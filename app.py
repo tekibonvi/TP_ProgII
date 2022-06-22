@@ -14,9 +14,12 @@ class Alumno():
         self.tel_fam = tel_fam
 
     def creacionLeg(self):
-        self.leg = "ALU_" + (f"{self.dni[5:]}")
-        return self.leg
+        self.__leg = "ALU_" + (f"{self.dni[5:]}")
+        return self.__leg
 
+    @property
+    def getLegajo(self):
+        return self.__leg
 
 class Docente():
     
@@ -30,13 +33,16 @@ class Docente():
         self.director = es_director
 
     def creacionLeg(self):
-        self.leg = "DOC_" + (f"{self.dni[5:]}")
-        return self.leg
+        self.__leg = "DOC_" + (f"{self.dni[5:]}")
+        return self.__leg
 
     def esDirector(self):
         if self.director:
-            self.leg = "DIR_" + (f"{self.dni[5:]}")
+            self.__leg = "DIR_" + (f"{self.dni[5:]}")
         
+    @property
+    def getLegajo(self):
+        return self.__leg
 
 class Personal():
     
@@ -48,6 +54,20 @@ class Personal():
 
 
     def creacionLeg(self):
-        self.leg = "PER_" + (f"{self.dni[5:]}")
-        return self.leg
+        self.__leg = "PER_" + (f"{self.dni[5:]}")
+        return self.__leg
         
+    @property 
+    def getLegajo(self):
+        return self.__leg
+
+#Intentando hacer el polimorfismo
+def creacionLegajo(persona):
+    persona.creacionLeg()
+
+
+
+miPersona = Alumno("Ezequias","40868149","","","","","","","")
+
+
+print(creacionLegajo(miPersona))
